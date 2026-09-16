@@ -119,11 +119,13 @@
     var sxList = [];
     for (i = 1; i < xr.length; i++) {
       row = xr[i];
-      sxList.push({
-        num: xNum >= 0 ? row[xNum] : undefined,
-        op: xOp >= 0 ? row[xOp] : undefined,
-        plat: xPlat >= 0 ? row[xPlat] : undefined
-      });
+      var xnum = xNum >= 0 ? row[xNum] : undefined;
+      var xop = xOp >= 0 ? row[xOp] : undefined;
+      var xplat = xPlat >= 0 ? row[xPlat] : undefined;
+      var numEmpty = xnum === undefined || xnum === null || String(xnum).trim() === '';
+      var opEmpty = xop === undefined || xop === null || String(xop).trim() === '';
+      if (numEmpty && opEmpty) continue;
+      sxList.push({ num: xnum, op: xop, plat: xplat });
     }
 
     /* ---------- 人员名单（标题行1，表头行2，数据行3起） ---------- */
